@@ -4,6 +4,8 @@ import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.stablekernel.espressolib.TextViewDrawableMatcher.Direction;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -13,6 +15,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.stablekernel.espressolib.MatcherViews.getViewWithParent;
 import static com.stablekernel.espressolib.MatcherViews.withDrawable;
+import static com.stablekernel.espressolib.MatcherViews.withTextDrawable;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 
 public class ViewInteractions {
@@ -48,13 +52,18 @@ public class ViewInteractions {
                        .perform(viewActions);
     }
 
-    public static ViewInteraction checkImageViewHasImage(int resId, int drawableId) {
+    public static ViewInteraction checkImageViewHasImageIsDisplayed(int resId, int drawableId) {
         return onView(withId(resId))
-                       .check(matches(withDrawable(drawableId)));
+                       .check(matches(allOf(withDrawable(drawableId), isDisplayed())));
     }
 
     public static ViewInteraction checkText(int resId, String text) {
         return onView(withId(resId))
                        .check(matches(withText(text)));
+    }
+
+    public static ViewInteraction checkTextViewHasDrawableIsDisplayed(int resId, int drawableId, Direction direction) {
+        return onView(withId(resId))
+                .check(matches(allOf(withTextDrawable(drawableId, direction), isDisplayed())));
     }
 }

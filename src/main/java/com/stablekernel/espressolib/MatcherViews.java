@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.stablekernel.espressolib.TextViewDrawableMatcher.Direction;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -51,6 +53,10 @@ public class MatcherViews {
 
     public static Matcher<View> noDrawable() {
         return new DrawableMatcher(-1);
+    }
+
+    public static Matcher<View> withTextDrawable(final int resId, Direction direction) {
+        return new TextViewDrawableMatcher(resId, direction);
     }
 
 }
