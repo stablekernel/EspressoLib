@@ -11,6 +11,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.stablekernel.espressolib.MatcherViews.getViewWithParent;
@@ -26,6 +27,21 @@ public class ViewInteractions {
                        .perform(click());
     }
 
+    public static ViewInteraction clickText(String text) {
+        return onView(withText(text))
+                .perform(click());
+    }
+
+    public static ViewInteraction clickText(int resId) {
+        return onView(withText(resId))
+                .perform(click());
+    }
+
+    public static ViewInteraction clickDescription(int resId) {
+        return onView(withContentDescription(resId))
+                .perform(click());
+    }
+
     public static ViewInteraction checkDisplayed(int resId) {
         return onView(withId(resId))
                        .check(matches(isDisplayed()));
@@ -39,6 +55,11 @@ public class ViewInteractions {
     public static ViewInteraction checkNotDisplayed(int resId) {
         return onView(withId(resId))
                        .check(matches(not(isDisplayed())));
+    }
+
+    public static ViewInteraction checkTextDisplayed(int resId, String text) {
+        return onView(allOf(withId(resId), withText(text)))
+                .check(matches(isDisplayed()));
     }
 
     public static ViewInteraction toastShowsText(final int textId, AppCompatActivity activity) {
