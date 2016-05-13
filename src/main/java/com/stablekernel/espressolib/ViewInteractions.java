@@ -57,6 +57,11 @@ public class ViewInteractions {
                        .check(matches(not(isDisplayed())));
     }
 
+    public static ViewInteraction checkTextNotDisplayed(int resId, String text) {
+        return onView(allOf(withId(resId), withText(text)))
+                .check(matches(not(isDisplayed())));
+    }
+
     public static ViewInteraction checkTextDisplayed(int resId, String text) {
         return onView(allOf(withId(resId), withText(text)))
                 .check(matches(isDisplayed()));
