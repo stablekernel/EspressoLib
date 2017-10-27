@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
-        minSdkVersion 12
+        minSdkVersion 14
     }
 
     packagingOptions {
@@ -30,10 +30,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support.test.espresso:espresso-intents:2.2.2'
-    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:design:25.4.0'
+    compile 'com.android.support.test.espresso:espresso-intents:3.0.1'
+    compile 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
